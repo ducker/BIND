@@ -15,10 +15,10 @@
 - (void)setViewModel:(id <BNDViewModel> )viewModel { \
     for (BNDBinding *binding in self.bindings) { \
         if ([self isShorthandBinding:binding]) { \
-            [binding bindLeft:viewModel withRight:self]; \
+            [binding bindLeft:viewModel withRight:self saveTransformerBlock:YES]; \
         } \
         else { \
-            [binding bindLeft:self withRight:self]; \
+            [binding bindLeft:self withRight:self saveTransformerBlock:YES]; \
         } \
     } \
     [self willChangeValueForKey:@"viewModel"]; \

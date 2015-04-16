@@ -81,6 +81,23 @@ typedef void(^BNDBindingObservationBlock)(id observable, id value);
 - (void)bindLeft:(id)leftObject
        withRight:(id)rightObject;
 
+
+/**
+ *  Binds the left object in BIND expression with the right object and sets the initial values.
+ *  This removes all previous bindings on previously set objects,
+ *  and builds bindings for keyPaths with new objects.
+ *  This is useful in situations where you want to reuse the binding,
+ *  and just update the objects being bound i.e. on UITableViewCell reuse.
+ *
+ *
+ *  @param leftObject  left object in the bind expression
+ *  @param rightObject right object in the bind expression
+ *  @param saveTransformerBlock bool value which determines if transform block shoud be saved
+ */
+- (void)    bindLeft:(id)leftObject
+           withRight:(id)rightObject
+saveTransformerBlock:(BOOL)saveBlock;
+
 /**
  *  Removes all bindings and references to leftObject and rightObject.
  */
