@@ -153,7 +153,18 @@ NSString * const BNDBindingAssociatedBindingsKey = @"BNDBindingAssociatedBinding
 
 - (void)bindLeft:(id)leftObject
        withRight:(id)rightObject {
-    [self unbind];
+    [self bindLeft:leftObject withRight:rightObject saveTransformerBlock:NO];
+}
+
+- (void)    bindLeft:(id)leftObject
+           withRight:(id)rightObject
+saveTransformerBlock:(BOOL)saveBlock {
+    if (saveBlock) {
+        BNDBindingTransformValueBlock block = self.transformBlock;
+        [self unbind];
+        self.transformBlock = block;
+    } else
+        [self unbind];
     
     self.leftObject = leftObject;
     self.rightObject = rightObject;
